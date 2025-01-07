@@ -78,25 +78,25 @@ def check_win():
                               (width, (row + 1)*height/3 - height/6 ), 4)
             break
 
-    # check for winning columns
+    # periksa kolom pemenang
     for col in range (0, 3):
         if (TTT[0][col] == TTT[1][col] == TTT[2][col]) and (TTT[0][col] is not None):
-            # this column won
+            # kolom ini menang
             winner = TTT[0][col]
-            #draw winning line
+            # menggambar garis kemenangan
             pg.draw.line (screen, (250,0,0),((col + 1)* width/3 - width/6, 0),\
                           ((col + 1)* width/3 - width/6, height), 4)
             break
 
-    # check for diagonal winners
+    # periksa pemenang diagonal
     if (TTT[0][0] == TTT[1][1] == TTT[2][2]) and (TTT[0][0] is not None):
-        # game won diagonally left to right
+        # permainan dimenangkan secara diagonal dari kiri ke kanan
         winner = TTT[0][0]
         pg.draw.line (screen, (250,70,70), (50, 50), (350, 350), 4)
        
 
     if (TTT[0][2] == TTT[1][1] == TTT[2][0]) and (TTT[0][2] is not None):
-        # game won diagonally right to left
+        # permainan dimenangkan secara diagonal dari kanan ke kiri
         winner = TTT[0][2]
         pg.draw.line (screen, (250,70,70), (350, 50), (50, 350), 4)
     
@@ -134,10 +134,10 @@ def drawXO(row,col):
     
 
 def userClick():
-    #get coordinates of mouse click
+    # dapatkan koordinat klik mouse
     x,y = pg.mouse.get_pos()
 
-    #get column of mouse click (1-3)
+    # dapatkan kolom klik mouse (1-3)
     if(x<width/3):
         col = 1
     elif (x<width/3*2):
@@ -147,7 +147,7 @@ def userClick():
     else:
         col = None
         
-    #get row of mouse click (1-3)
+    #dapatkan deretan klik mouse (1-3)
     if(y<height/3):
         row = 1
     elif (y<height/3*2):
@@ -162,7 +162,7 @@ def userClick():
     if(row and col and TTT[row-1][col-1] is None):
         global XO
         
-        #draw the x or o on screen
+        #gambar x atau o di layar
         drawXO(row,col)
         check_win()
         
@@ -180,14 +180,14 @@ def reset_game():
 
 game_opening()
 
-# run the game loop forever
+#jalankan game loop selamanya
 while(True):
     for event in pg.event.get():
         if event.type == QUIT:
             pg.quit()
             sys.exit()
         elif event.type == MOUSEBUTTONDOWN:
-            # the user clicked; place an X or O
+            #pengguna mengklik; beri tanda X atau O
             userClick()
             if(winner or draw):
                 reset_game()

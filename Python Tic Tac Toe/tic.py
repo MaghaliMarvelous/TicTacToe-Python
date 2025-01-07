@@ -2,7 +2,7 @@ import pygame as pg,sys
 from pygame.locals import *
 import time
 
-#initialize global variables
+#inisialisasi variabel global
 XO = 'x'
 winner = None
 draw = False
@@ -11,22 +11,22 @@ height = 400
 white = (255, 255, 255)
 line_color = (10,10,10)
 
-#TicTacToe 3x3 board
+#Papan 3x3 Tic Tac Toe
 TTT = [[None]*3,[None]*3,[None]*3]
 
-#initializing pygame window
+#Inisialisasi window pygame nya
 pg.init()
 fps = 30
 CLOCK = pg.time.Clock()
 screen = pg.display.set_mode((width, height+100),0,32)
 pg.display.set_caption("Tic Tac Toe")
 
-#loading the images
+#load image tictacopening.jpg
 opening = pg.image.load('tictacopening.jpg')
 x_img = pg.image.load('x.png')
 o_img = pg.image.load('o.png')
 
-#resizing images
+#ukuran image nya
 x_img = pg.transform.scale(x_img, (80,80))
 o_img = pg.transform.scale(o_img, (80,80))
 opening = pg.transform.scale(opening, (width, height+100))
@@ -38,10 +38,10 @@ def game_opening():
     time.sleep(1)
     screen.fill(white)
     
-    # Drawing vertical lines
+    # gambar garis vertikal
     pg.draw.line(screen,line_color,(width/3,0),(width/3, height),7)
     pg.draw.line(screen,line_color,(width/3*2,0),(width/3*2, height),7)
-    # Drawing horizontal lines
+    # gambar garis horizontal
     pg.draw.line(screen,line_color,(0,height/3),(width, height/3),7)
     pg.draw.line(screen,line_color,(0,height/3*2),(width, height/3*2),7)
     draw_status()
@@ -69,10 +69,10 @@ def draw_status():
 def check_win():
     global TTT, winner,draw
 
-    # check for winning rows
+    # periksan baris winning
     for row in range (0,3):
         if ((TTT [row][0] == TTT[row][1] == TTT[row][2]) and(TTT [row][0] is not None)):
-            # this row won
+            # baris bawah ini menang
             winner = TTT[row][0]
             pg.draw.line(screen, (250,0,0), (0, (row + 1)*height/3 -height/6),\
                               (width, (row + 1)*height/3 - height/6 ), 4)

@@ -8,4 +8,6 @@ Gambarlah bilah status di bawah kanvas untuk menunjukkan giliran pemain mana yan
 Ketika ada yang memenangkan permainan atau permainannya seri maka kita reset permainannya.
 
 Jangan lupa install pygame
+
 pip install pygame
+
